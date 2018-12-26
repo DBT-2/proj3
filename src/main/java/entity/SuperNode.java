@@ -9,6 +9,7 @@ public class SuperNode {
     public int id;
     private List<Edge> edgeList;
     public List<SuperEdge> superEdges;
+    public boolean processed;
 
     public SuperNode() {
         this.id = ++snID;
@@ -18,5 +19,9 @@ public class SuperNode {
 
     public void addEdge(Edge e) {
         edgeList.add(e);
+    }
+
+    public List<Edge> getEdge(){
+        return edgeList;
     }
 }

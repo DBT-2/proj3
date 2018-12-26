@@ -11,4 +11,8 @@ public class Edge {
         this.from = from;
         this.to = to;
     }
+    public boolean containVertex(Vertex u){
+        if(this.from!=u&&this.to!=u) return false;
+        else return true;
+    }
 }
