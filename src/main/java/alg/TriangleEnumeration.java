@@ -1,11 +1,9 @@
 package alg;
 
-import entity.Edge;
 import entity.Graph;
 import entity.Vertex;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * TriangleEnumeration calculates the supports of egdes in a map.
@@ -15,7 +13,10 @@ public class TriangleEnumeration {
     public static void run(Graph g) {
         Set<Integer> marked = new HashSet<Integer>();
         Set<Integer> removed = new HashSet<Integer>();
-        for(Vertex u : g.vertexs.values()) {
+        List<Vertex> vertices = new ArrayList(g.vertexs.values());
+        vertices.sort((o1, o2) -> -Integer.compare(o1.degree(), o2.degree()));
+
+        for(Vertex u : vertices) {
             for(Vertex v : u.getNeighbors()) {
                 if(!removed.contains(v.id))
                     marked.add(v.id);

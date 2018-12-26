@@ -12,7 +12,15 @@ public class Edge {
         this.to = to;
     }
     public boolean containVertex(Vertex u){
-        if(this.from!=u&&this.to!=u) return false;
-        else return true;
+        return this.from == u || this.to == u;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Edge{" +
+                + from.id +
+                "," + to.id +
+                '}';
     }
 }

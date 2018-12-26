@@ -16,23 +16,26 @@ public class IndexConstruction {
         processed = new HashSet<>();
         edgeListMap = new HashMap<>();
         removed = new HashSet<>();
-        List<Edge>[] trussEdges = new List[g.maxTrussness];
+        List<Edge>[] trussEdges = new List[g.maxTrussness + 1];
 
         Set<SuperNode> superNodes = new HashSet<>();
         List<SuperEdge> superEdges = new ArrayList<>();
 
         List<Edge> edges = g.listEdges();
         for (Edge edge : edges) {
-            if (trussEdges[edge.trussness - 1] == null)
-                trussEdges[edge.trussness - 1] = new ArrayList();
-            trussEdges[edge.trussness - 1].add(edge);
+            if (trussEdges[edge.trussness] == null)
+                trussEdges[edge.trussness] = new ArrayList();
+            trussEdges[edge.trussness].add(edge);
             edgeListMap.put(edge, new ArrayList<>());
         }
 
         edgeQueue = new ArrayDeque<>();
         for (int k = 3; k <= g.maxTrussness; k++) {
-            while(!trussEdges[k].isEmpty()) {
-                Edge e = trussEdges[k].remove(trussEdges.length-1);
+            while(trussEdges[k] != null && !trussEdges[k].isEmpty()) {
+                Edge e = trussEdges[k].remove(trussEdges[k].size()-1);
+                if (removed.contains(e))
+                    continue;
+
                 processed.add(e);
                 SuperNode sv = new SuperNode();
                 sv.trussness = k;
@@ -44,16 +47,19 @@ public class IndexConstruction {
                     List<SuperNode> edgeSNs = edgeListMap.get(currEdge);
                     for (SuperNode su : edgeSNs) {
                         SuperEdge superEdge = new SuperEdge(sv, su);
-                        superEdges.add(superEdge);
-                        su.superEdges.add(superEdge);
-                        sv.superEdges.add(superEdge);
+                        if (!superEdges.contains(superEdge)) {
+                            superEdges.add(superEdge);
+                            su.superEdges.add(superEdge);
+                            sv.superEdges.add(superEdge);
+                        }
                     }
                     Vertex u = currEdge.from;
                     Vertex v = currEdge.to;
+
                     for (Edge uw : u.getEdges()) {
                         if (removed.contains(uw))
                             continue;
-                        Vertex w = uw.to;
+                        Vertex w = uw.from == u ? uw.to : uw.from;
                         Edge vw;
                         if (w.id < v.id) {
                             vw = w.getEdge(v.id);
@@ -85,7 +91,7 @@ public class IndexConstruction {
             }
         } else {
             List<SuperNode> edgeSNList = edgeListMap.get(edge);
-            if(edgeSNList.size() > 0 &&
+            if(edgeSNList.size() == 0 ||
                     edgeSNList.get(edgeSNList.size() - 1).id != currSN.id) {
                 edgeSNList.add(currSN);
             }

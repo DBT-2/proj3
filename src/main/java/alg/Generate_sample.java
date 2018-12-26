@@ -40,10 +40,8 @@ public class Generate_sample {
     }
     public static void main(String[] args){
         Graph sample_graph=Generate_sample.generate_sample();
-        TriangleEnumeration.run(sample_graph);
-        TrussDecomposition.run(sample_graph);
         SuperGraph superGraph=IndexConstruction.run(sample_graph);
         CommunitySearch communitySearch=new CommunitySearch();
-        communitySearch.run(3,new Vertex(7),superGraph);
+        communitySearch.run(4, sample_graph.vertexs.get(4),superGraph);
     }
 }
