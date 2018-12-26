@@ -1,9 +1,6 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Vertex {
     public int id;
@@ -11,6 +8,7 @@ public class Vertex {
 
     public Vertex(int id){
         this.id=id;
+        outEdges = new HashMap<>();
     }
 
     private Map<Integer, Edge> outEdges;
@@ -40,5 +38,13 @@ public class Vertex {
 
     public Edge getEdge(int v) {
         return outEdges.get(v);
+    }
+
+    public void addEdge(Edge e) {
+        if (e.from == this) {
+            outEdges.put(e.to.id, e);
+        } else {
+            outEdges.put(e.from.id, e);
+        }
     }
 }
