@@ -35,6 +35,7 @@ public class IndexConstruction {
                 Edge e = trussEdges[k].remove(trussEdges.length-1);
                 processed.add(e);
                 SuperNode sv = new SuperNode();
+                sv.trussness = k;
                 superNodes.add(sv);
                 edgeQueue.add(e);
                 while(!edgeQueue.isEmpty()) {

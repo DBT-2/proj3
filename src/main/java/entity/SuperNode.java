@@ -9,6 +9,7 @@ public class SuperNode {
     public int id;
     private List<Edge> edgeList;
     public List<SuperEdge> superEdges;
+    public int trussness;
 
     public SuperNode() {
         this.id = ++snID;
