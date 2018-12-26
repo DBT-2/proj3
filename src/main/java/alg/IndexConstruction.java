@@ -45,6 +45,8 @@ public class IndexConstruction {
                     for (SuperNode su : edgeSNs) {
                         SuperEdge superEdge = new SuperEdge(sv, su);
                         superEdges.add(superEdge);
+                        su.superEdges.add(superEdge);
+                        sv.superEdges.add(superEdge);
                     }
                     Vertex u = currEdge.from;
                     Vertex v = currEdge.to;
