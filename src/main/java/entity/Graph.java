@@ -11,7 +11,7 @@ public class Graph {
     public List<Edge> edges;
 
     public int maxTrussness;
-    public Graph(){}
+    public Graph(){vertexs=new HashMap<>();edges=new ArrayList<>();}
     public Graph(int vNum) {
         vertexs = new HashMap<>(vNum);
     }
@@ -25,8 +25,8 @@ public class Graph {
     private void collectEdges() {
         edges = new ArrayList<Edge>();
         for (Vertex v : vertexs.values()) {
-            if(v.outEdges != null)
-                edges.addAll(v.outEdges.values());
+            if(v.getEdges() != null)
+                edges.addAll(v.getEdges());
         }
     }
 
@@ -45,6 +45,6 @@ public class Graph {
             from = to;
             to = temp;
         }
-        return vertexs.get(from).outEdges.get(to);
+        return vertexs.get(from).getEdge(to);
     }
 }
