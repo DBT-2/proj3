@@ -24,14 +24,14 @@ public class TrussDecomposition {
             }
             Vertex u = minEdge.from;
             Vertex v = minEdge.to;
-            if(u.outEdges.size() > v.outEdges.size()) {
+            if(u.degree() > v.degree()) {
                 Vertex temp = u;
                 u = v;
                 v = temp;
             }
-            for (Edge uw : u.outEdges.values()) {
-                Vertex w = uw.to;
+            for (Vertex w : u.getNeighbors()) {
                 Edge vw = g.findEdge(v.id, w.id);
+                Edge uw = g.findEdge(u.id, w.id);
                 if (vw != null) {
                     edgeSet.remove(uw);
                     edgeSet.remove(vw);

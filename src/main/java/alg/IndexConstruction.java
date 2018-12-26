@@ -50,15 +50,15 @@ public class IndexConstruction {
                     }
                     Vertex u = currEdge.from;
                     Vertex v = currEdge.to;
-                    for (Edge uw : u.outEdges.values()) {
+                    for (Edge uw : u.getEdges()) {
                         if (removed.contains(uw))
                             continue;
                         Vertex w = uw.to;
                         Edge vw;
                         if (w.id < v.id) {
-                            vw = w.outEdges.get(v.id);
+                            vw = w.getEdge(v.id);
                         } else {
-                            vw = v.outEdges.get(w.id);
+                            vw = v.getEdge(w.id);
                         }
                         if (vw != null) {
                             if(uw.trussness >= k && vw.trussness >= k) {

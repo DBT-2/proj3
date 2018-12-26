@@ -16,21 +16,21 @@ public class TriangleEnumeration {
         Set<Integer> marked = new HashSet<Integer>();
         Set<Integer> removed = new HashSet<Integer>();
         for(Vertex u : g.vertexs.values()) {
-            for(Edge v : u.outEdges.values()) {
-                if(!removed.contains(v.to.id))
-                    marked.add(v.to.id);
+            for(Vertex v : u.getNeighbors()) {
+                if(!removed.contains(v.id))
+                    marked.add(v.id);
             }
-            for(Edge v : u.outEdges.values()) {
-                if (removed.contains(v.to.id))
+            for(Vertex v : u.getNeighbors()) {
+                if (removed.contains(v.id))
                     continue;
-                for(Edge w : v.to.outEdges.values()) {
-                    if (marked.contains(w.to.id) && !removed.contains(w.to.id)) {
-                        g.updateSupport(u.id, v.to.id, 1);
-                        g.updateSupport(v.to.id, w.to.id,1 );
-                        g.updateSupport(u.id, w.to.id, 1);
+                for(Vertex w : v.getNeighbors()) {
+                    if (marked.contains(w.id) && !removed.contains(w.id)) {
+                        g.updateSupport(u.id, v.id, 1);
+                        g.updateSupport(v.id, w.id,1 );
+                        g.updateSupport(u.id, w.id, 1);
                     }
                 }
-                marked.remove(v.to.id);
+                marked.remove(v.id);
             }
             removed.add(u.id);
         }
