@@ -2,6 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class SuperNode {
     public static int snID = 0;
@@ -24,5 +25,12 @@ public class SuperNode {
 
     public List<Edge> getEdge(){
         return edgeList;
+    }
+    public ArrayList<SuperNode> getNeighood(){
+        ArrayList<SuperNode> neighood=new ArrayList<>();
+        for(SuperEdge e:this.superEdges){
+            neighood.add(e.anotherPoint(this));
+        }
+        return neighood;
     }
 }

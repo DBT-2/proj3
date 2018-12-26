@@ -11,7 +11,7 @@ public class Graph {
     public List<Edge> edges;
 
     public int maxTrussness;
-
+    public Graph(){}
     public Graph(int vNum) {
         vertexs = new HashMap<>(vNum);
     }
