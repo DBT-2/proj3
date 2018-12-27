@@ -4,14 +4,13 @@ import entity.*;
 import entity.SuperNode;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 
 public class CommunitySearch {
-    ArrayList<SuperNode> hashStruc(Vertex u, SuperGraph superGraph){
+    private ArrayList<SuperNode> findSuperNodes(Vertex u, SuperGraph superGraph){
         ArrayList<SuperNode> superNodeSet=new ArrayList<>();
-        for(SuperNode v:superGraph.superNodes){
+        for(SuperNode v:superGraph.superNodes.values()){
             for(Edge e:v.getEdge()){
                 if(e.containVertex(u)){
                     superNodeSet.add(v);
@@ -23,11 +22,11 @@ public class CommunitySearch {
     }
     public ArrayList<ArrayList<Edge>> run(int k,Vertex q,SuperGraph superGraph){
         ArrayList<ArrayList<Edge>> communities=new ArrayList<>();
-        for(SuperNode v:superGraph.superNodes){
+        for(SuperNode v:superGraph.superNodes.values()){
             v.processed=false;
         }
         int l=0;
-        ArrayList<SuperNode> Hq=hashStruc(q,superGraph);
+        ArrayList<SuperNode> Hq= findSuperNodes(q,superGraph);
         for(SuperNode v:Hq){
             if((v.trussness>=k)&& !(v.processed)){
                 v.processed=true;

@@ -12,14 +12,16 @@ public class IndexConstruction {
 
     public static SuperGraph run(Graph g) {
         TrussDecomposition.run(g);
+        System.out.println("Index construction started...");
+        long startTime = System.currentTimeMillis();
 
         processed = new HashSet<>();
         edgeListMap = new HashMap<>();
         removed = new HashSet<>();
         List<Edge>[] trussEdges = new List[g.maxTrussness + 1];
 
-        Set<SuperNode> superNodes = new HashSet<>();
-        List<SuperEdge> superEdges = new ArrayList<>();
+        Map<Integer, SuperNode> superNodes = new HashMap<>();
+        Set<SuperEdge> superEdges = new HashSet<>();
 
         List<Edge> edges = g.listEdges();
         for (Edge edge : edges) {
@@ -31,6 +33,12 @@ public class IndexConstruction {
 
         edgeQueue = new ArrayDeque<>();
         for (int k = 3; k <= g.maxTrussness; k++) {
+            System.out.println(String.format("Processing truessness = %d, # edges = %d", k,
+                    trussEdges[k] != null ? trussEdges[k].size() : 0));
+            long trussStartTime = System.currentTimeMillis();
+            int superNodeNum = superNodes.size();
+            int superEdgeNum = superEdges.size();
+
             while(trussEdges[k] != null && !trussEdges[k].isEmpty()) {
                 Edge e = trussEdges[k].remove(trussEdges[k].size()-1);
                 if (removed.contains(e))
@@ -39,7 +47,7 @@ public class IndexConstruction {
                 processed.add(e);
                 SuperNode sv = new SuperNode();
                 sv.trussness = k;
-                superNodes.add(sv);
+                superNodes.put(sv.id, sv);
                 edgeQueue.add(e);
                 while(!edgeQueue.isEmpty()) {
                     Edge currEdge = edgeQueue.remove();
@@ -76,8 +84,12 @@ public class IndexConstruction {
                     removed.add(currEdge);
                 }
             }
+            System.out.println(String.format("Trusses = %d consumed %dms", k, (System.currentTimeMillis() - trussStartTime)));
+            System.out.println(String.format("New supernodes: %d, new superedges: %d", superNodes.size() - superNodeNum,
+                    superEdges.size() - superEdgeNum));
         }
 
+        System.out.println(String.format("Index construction ends after %dms", (System.currentTimeMillis() - startTime)));
         return new SuperGraph(superNodes, superEdges);
     }
 

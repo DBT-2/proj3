@@ -11,6 +11,9 @@ import java.util.*;
 public class TriangleEnumeration {
 
     public static void run(Graph g) {
+        System.out.println("Triangle enumeration started...");
+        long startTime = System.currentTimeMillis();
+
         Set<Integer> marked = new HashSet<Integer>();
         Set<Integer> removed = new HashSet<Integer>();
         List<Vertex> vertices = new ArrayList(g.vertexs.values());
@@ -35,5 +38,7 @@ public class TriangleEnumeration {
             }
             removed.add(u.id);
         }
+
+        System.out.println(String.format("Triangle enumeration completed after %dms", (System.currentTimeMillis() - startTime)));
     }
 }
