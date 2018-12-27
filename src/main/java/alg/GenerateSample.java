@@ -6,12 +6,10 @@ import entity.Graph;
 import entity.SuperGraph;
 import entity.Vertex;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class Generate_sample {
-    public static Graph generate_sample(){
+public class GenerateSample {
+    public static Graph generateSample(){
         Graph sample=new Graph();
         ArrayList<Vertex> vertices=new ArrayList<>();
         for(int i=1;i<12;i++) {
@@ -39,7 +37,7 @@ public class Generate_sample {
         return sample;
     }
     public static void main(String[] args){
-        Graph sample_graph=Generate_sample.generate_sample();
+        Graph sample_graph= GenerateSample.generateSample();
         SuperGraph superGraph=IndexConstruction.run(sample_graph);
         CommunitySearch communitySearch=new CommunitySearch();
         communitySearch.run(4, sample_graph.vertexs.get(4),superGraph);
