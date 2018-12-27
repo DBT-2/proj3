@@ -5,13 +5,11 @@ import alg.IndexConstruction;
 import entity.Graph;
 import entity.SuperGraph;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class IndexMain {
 
-    public static String[] dataset=new String[]{"/Users/koutakashi/codes/proj-3/data/amazon.ungraph.txt"};
+    public static String[] dataset=new String[]{"/Users/koutakashi/codes/proj-3/data/dblp.ungraph.txt"};
 
     public static void main(String[] args) throws IOException {
         int datasetNum = 0;

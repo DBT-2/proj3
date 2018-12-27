@@ -21,7 +21,7 @@ public class IndexConstruction {
         List<Edge>[] trussEdges = new List[g.maxTrussness + 1];
 
         Map<Integer, SuperNode> superNodes = new HashMap<>();
-        List<SuperEdge> superEdges = new ArrayList<>();
+        Set<SuperEdge> superEdges = new HashSet<>();
 
         List<Edge> edges = g.listEdges();
         for (Edge edge : edges) {
@@ -36,6 +36,8 @@ public class IndexConstruction {
             System.out.println(String.format("Processing truessness = %d, # edges = %d", k,
                     trussEdges[k] != null ? trussEdges[k].size() : 0));
             long trussStartTime = System.currentTimeMillis();
+            int superNodeNum = superNodes.size();
+            int superEdgeNum = superEdges.size();
 
             while(trussEdges[k] != null && !trussEdges[k].isEmpty()) {
                 Edge e = trussEdges[k].remove(trussEdges[k].size()-1);
@@ -83,6 +85,8 @@ public class IndexConstruction {
                 }
             }
             System.out.println(String.format("Trusses = %d consumed %dms", k, (System.currentTimeMillis() - trussStartTime)));
+            System.out.println(String.format("New supernodes: %d, new superedges: %d", superNodes.size() - superNodeNum,
+                    superEdges.size() - superEdgeNum));
         }
 
         System.out.println(String.format("Index construction ends after %dms", (System.currentTimeMillis() - startTime)));

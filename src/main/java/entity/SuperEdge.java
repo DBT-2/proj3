@@ -40,11 +40,11 @@ public class SuperEdge {
 
     @Override
     public int hashCode() {
-        return Objects.hash(from, to);
+        return Objects.hash(from.id, to.id);
     }
 
     public void serializeTo(Writer writer) throws IOException {
-        writer.write(from.id + ',' + to.id + '\n');
+        writer.write(from.id + "," + to.id + "\n");
     }
 
     public static SuperEdge deserializeFrom(BufferedReader reader, SuperGraph sg) throws IOException {

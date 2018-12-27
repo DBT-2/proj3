@@ -8,24 +8,24 @@ import java.util.*;
 public class SuperGraph {
 
     public Map<Integer, SuperNode> superNodes;
-    public List<SuperEdge> superEdges;
+    public Collection<SuperEdge> superEdges;
 
-    public SuperGraph(Map<Integer, SuperNode> superNodes, List<SuperEdge> superEdges) {
+    public SuperGraph(Map<Integer, SuperNode> superNodes, Set<SuperEdge> superEdges) {
         this.superNodes = superNodes;
         this.superEdges = superEdges;
     }
 
     public SuperGraph() {
         this.superNodes = new HashMap<>();
-        this.superEdges = new ArrayList<>();
+        this.superEdges = new HashSet<>();
     }
 
     public void serializeTo(Writer writer) throws IOException {
-        writer.write(superNodes.size() + '\n');
+        writer.write(superNodes.size() + "\n");
         for(SuperNode sn : superNodes.values()) {
             sn.serializeTo(writer);
         }
-        writer.write(superEdges.size() + '\n');
+        writer.write(superEdges.size() + "\n");
         for(SuperEdge se : superEdges) {
             se.serializeTo(writer);
         }

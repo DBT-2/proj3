@@ -42,8 +42,8 @@ public class SuperNode {
     }
 
     public void serializeTo(Writer writer) throws IOException {
-        writer.write(String.valueOf(id) + ',' + trussness + '\n');
-        writer.write(String.valueOf(edgeList.size()) + '\n');
+        writer.write(String.valueOf(id) + "," + trussness + "\n");
+        writer.write(String.valueOf(edgeList.size()) + "\n");
         for(Edge edge : edgeList) {
             edge.serializeTo(writer);
         }

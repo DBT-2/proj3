@@ -32,7 +32,7 @@ public class Edge {
     }
 
     public void serializeTo(Writer writer) throws IOException {
-        writer.write(from.id + "," + to.id + "," + trussness + '\n');
+        writer.write(from.id + "," + to.id + "," + trussness + "\n");
     }
 
     public static Edge deserializeFrom(BufferedReader reader, Graph g) throws IOException {
