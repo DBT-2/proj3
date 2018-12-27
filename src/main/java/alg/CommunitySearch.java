@@ -29,17 +29,17 @@ public class CommunitySearch {
         int l=0;
         ArrayList<SuperNode> Hq=hashStruc(q,superGraph);
         for(SuperNode v:Hq){
-            if((v.trussness>=k)&&(v.processed)==false){
+            if((v.trussness>=k)&& !(v.processed)){
                 v.processed=true;
                 l++;
-                ArrayList<Edge> A=null;
-                LinkedList<SuperNode> Q=null;
+                ArrayList<Edge> A= new ArrayList<>();
+                LinkedList<SuperNode> Q= new LinkedList<>();
                 Q.addLast(v);
-                while (Q!=null){
+                while (!Q.isEmpty()){
                     v=Q.removeFirst();
                     A.addAll(v.getEdge());
                     for(SuperNode u:v.getNeighood()){
-                        if((u.trussness>=k)&&(u.processed==false)){
+                        if((u.trussness>=k)&&(!u.processed)){
                             u.processed=true;
                             Q.addLast(u);
                         }
@@ -49,6 +49,17 @@ public class CommunitySearch {
             }
         }
         return communities;
+    }
+    public static HashSet<Vertex> printCommunityPoint(ArrayList<ArrayList<Edge>> communities){
+        HashSet<Vertex> pts=new HashSet<>();
+        for(ArrayList<Edge> community:communities){
+            for(Edge edge:community){
+                pts.add(edge.from);
+                pts.add(edge.to);
+            }
+        }
+        System.out.println(pts);
+        return pts;
     }
     public static void main(String[] args){
         CommunitySearch communitySearch=new CommunitySearch();

@@ -47,4 +47,11 @@ public class Vertex {
             outEdges.put(e.from.id, e);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Vertex{" +
+                + id +
+                '}';
+    }
 }
