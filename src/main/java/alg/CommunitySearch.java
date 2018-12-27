@@ -58,11 +58,7 @@ public class CommunitySearch {
                 pts.add(edge.to);
             }
         }
-        System.out.println(pts);
+        //System.out.println(pts);
         return pts;
-    }
-    public static void main(String[] args){
-        CommunitySearch communitySearch=new CommunitySearch();
-        communitySearch.run(3,null,null);
     }
 }

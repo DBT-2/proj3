@@ -57,6 +57,7 @@ public class DataCommunity {
         }
         return dataGraph;
     }
+
     public static void main(String[] args) throws IOException{
         Graph graph=DataCommunity.readData(DataCommunity.dataset[0]);
         SuperGraph superGraph=IndexConstruction.run(graph);

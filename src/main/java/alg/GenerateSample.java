@@ -36,6 +36,7 @@ public class GenerateSample {
         }
         return sample;
     }
+
     public static void main(String[] args){
         Graph sample_graph= GenerateSample.generateSample();
         SuperGraph superGraph=IndexConstruction.run(sample_graph);
