@@ -9,6 +9,9 @@ import java.util.*;
 public class TrussDecomposition {
     public static void run(Graph g) {
         TriangleEnumeration.run(g);
+        System.out.println("Truss decomposition started...");
+        long startTime = System.currentTimeMillis();
+
         List<Edge> edges = g.listEdges();
         TreeSet<Edge> edgeSet = new TreeSet<>(new Comparator<Edge>() {
             @Override
@@ -57,7 +60,7 @@ public class TrussDecomposition {
             g.maxTrussness = k;
             edgeSet.remove(minEdge);
             removed.add(minEdge);
-
         }
+        System.out.println(String.format("Truss decomposition completes after %dms", (System.currentTimeMillis() - startTime)));
     }
 }

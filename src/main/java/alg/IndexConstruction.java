@@ -12,6 +12,8 @@ public class IndexConstruction {
 
     public static SuperGraph run(Graph g) {
         TrussDecomposition.run(g);
+        System.out.println("Index construction started...");
+        long startTime = System.currentTimeMillis();
 
         processed = new HashSet<>();
         edgeListMap = new HashMap<>();
@@ -31,6 +33,10 @@ public class IndexConstruction {
 
         edgeQueue = new ArrayDeque<>();
         for (int k = 3; k <= g.maxTrussness; k++) {
+            System.out.println(String.format("Processing truessness = %d, # edges = %d", k,
+                    trussEdges[k] != null ? trussEdges[k].size() : 0));
+            long trussStartTime = System.currentTimeMillis();
+
             while(trussEdges[k] != null && !trussEdges[k].isEmpty()) {
                 Edge e = trussEdges[k].remove(trussEdges[k].size()-1);
                 if (removed.contains(e))
@@ -76,8 +82,10 @@ public class IndexConstruction {
                     removed.add(currEdge);
                 }
             }
+            System.out.println(String.format("Trusses = %d consumed %dms", k, (System.currentTimeMillis() - trussStartTime)));
         }
 
+        System.out.println(String.format("Index construction ends after %dms", (System.currentTimeMillis() - startTime)));
         return new SuperGraph(superNodes, superEdges);
     }
 

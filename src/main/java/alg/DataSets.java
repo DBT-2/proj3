@@ -9,7 +9,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class DataCommunity {
+public class DataSets {
     public static Graph readData(String filename) throws IOException {
         Graph dataGraph=new Graph();
         try{
