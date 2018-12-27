@@ -18,7 +18,7 @@ public class IndexConstruction {
         removed = new HashSet<>();
         List<Edge>[] trussEdges = new List[g.maxTrussness + 1];
 
-        Set<SuperNode> superNodes = new HashSet<>();
+        Map<Integer, SuperNode> superNodes = new HashMap<>();
         List<SuperEdge> superEdges = new ArrayList<>();
 
         List<Edge> edges = g.listEdges();
@@ -39,7 +39,7 @@ public class IndexConstruction {
                 processed.add(e);
                 SuperNode sv = new SuperNode();
                 sv.trussness = k;
-                superNodes.add(sv);
+                superNodes.put(sv.id, sv);
                 edgeQueue.add(e);
                 while(!edgeQueue.isEmpty()) {
                     Edge currEdge = edgeQueue.remove();

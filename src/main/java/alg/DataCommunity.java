@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class DataCommunity {
-    public static String[] dataset=new String[]{"/Users/tianyu/JavaProject/database_3/dataset/Amazon/amazon.ungraph.txt"};
     public static Graph readData(String filename) throws IOException {
         Graph dataGraph=new Graph();
         try{
@@ -57,11 +56,5 @@ public class DataCommunity {
         }
         return dataGraph;
     }
-    public static void main(String[] args) throws IOException{
-        Graph graph=DataCommunity.readData(DataCommunity.dataset[0]);
-        SuperGraph superGraph=IndexConstruction.run(graph);
-        CommunitySearch communitySearch=new CommunitySearch();
-        ArrayList<ArrayList<Edge>> commuties=communitySearch.run(3, graph.vertexs.get(213603),superGraph);
-        CommunitySearch.printCommunityPoint(commuties);
-    }
+
 }

@@ -47,4 +47,8 @@ public class Graph {
         }
         return vertexs.get(from).getEdge(to);
     }
+
+    public Vertex getVertex(int id) {
+        return vertexs.get(id);
+    }
 }
