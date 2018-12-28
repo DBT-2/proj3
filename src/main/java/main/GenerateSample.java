@@ -1,6 +1,8 @@
-package alg;
+package main;
 
 
+import alg.CommunitySearch;
+import alg.IndexConstruction;
 import entity.Edge;
 import entity.Graph;
 import entity.SuperGraph;
@@ -39,7 +41,7 @@ public class GenerateSample {
 
     public static void main(String[] args){
         Graph sample_graph= GenerateSample.generateSample();
-        SuperGraph superGraph=IndexConstruction.run(sample_graph);
+        SuperGraph superGraph= IndexConstruction.run(sample_graph);
         CommunitySearch communitySearch=new CommunitySearch();
         ArrayList<ArrayList<Edge>> commuties=communitySearch.run(5, sample_graph.vertexs.get(7),superGraph);
         CommunitySearch.printCommunityPoint(commuties);

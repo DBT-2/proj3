@@ -16,7 +16,7 @@ public class IndexMain {
     "/Users/tianyu/JavaProject/database_3/dataset/Orkut/orkut.ungraph.txt"};
 
     public static void main(String[] args) throws IOException {
-        int datasetNum = 2;
+        int datasetNum = 4;
 
         String inputFileName = dataset[datasetNum];
         String outputFileName = inputFileName.replace(".txt", ".index");

@@ -4,12 +4,16 @@ import java.io.*;
 import java.util.*;
 
 public class DataProcess {
-    public static String[] datasets={"/Users/tianyu/JavaProject/database_3/dataset/Youtube/youtube.top5000.cmty.txt",
-    "/Users/tianyu/JavaProject/database_3/dataset/Livejournal/lj.top5000.cmty.txt",
-    "/Users/tianyu/JavaProject/database_3/dataset/Orkut/orkut.top5000.cmty.txt"};
-    public static String[] processedData={"/Users/tianyu/JavaProject/database_3/dataset/Youtube/youtube.pro.top5000.cmty.txt",
-    "/Users/tianyu/JavaProject/database_3/dataset/Livejournal/lj.pro.top5000.cmty.txt",
-            "/Users/tianyu/JavaProject/database_3/dataset/Orkut/orkut.pro.top5000.cmty.txt"};
+    public static String[] datasets={"/Users/tianyu/JavaProject/database_3/dataset/Amazon/amazon.top5000.cmty.txt",
+        "/Users/tianyu/JavaProject/database_3/dataset/DBLP/dblp.top5000.cmty.txt",
+        "/Users/tianyu/JavaProject/database_3/dataset/Youtube/youtube.top5000.cmty.txt",
+        "/Users/tianyu/JavaProject/database_3/dataset/Livejournal/lj.top5000.cmty.txt",
+        "/Users/tianyu/JavaProject/database_3/dataset/Orkut/orkut.top5000.cmty.txt"};
+    public static String[] processedData={"/Users/tianyu/JavaProject/database_3/dataset/Amazon/amazon.pro.top5000.cmty.txt",
+        "/Users/tianyu/JavaProject/database_3/dataset/DBLP/dblp.pro.top5000.cmty.txt" ,
+        "/Users/tianyu/JavaProject/database_3/dataset/Youtube/youtube.pro.top5000.cmty.txt",
+        "/Users/tianyu/JavaProject/database_3/dataset/Livejournal/lj.pro.top5000.cmty.txt",
+        "/Users/tianyu/JavaProject/database_3/dataset/Orkut/orkut.pro.top5000.cmty.txt"};
     public static void dataProcess(String inputFile,String outputFile) throws IOException {
         File file=new File(inputFile);
         BufferedReader bufferedReader=new BufferedReader(new FileReader(file));
@@ -43,8 +47,11 @@ public class DataProcess {
                 Map.Entry entry=(Map.Entry)iterator.next();
                 int key=(Integer)entry.getKey();
                 HashSet value=(HashSet)entry.getValue();
-
-                bufferedWriter.write(key+""+":"+value+"\n");
+                bufferedWriter.write(key+" ");
+                for(Object integer:value){
+                    bufferedWriter.write(integer+" ");
+                }
+                bufferedWriter.write("\n");
                 //int i=1;
             }
             break;
@@ -54,6 +61,6 @@ public class DataProcess {
 
     }
     public static void main(String[] args)throws IOException{
-        DataProcess.dataProcess(datasets[2],processedData[2]);
+        DataProcess.dataProcess(datasets[1],processedData[1]);
     }
 }

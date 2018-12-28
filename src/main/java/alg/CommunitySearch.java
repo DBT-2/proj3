@@ -49,6 +49,7 @@ public class CommunitySearch {
         }
         return communities;
     }
+    public static int num=0;
     public static HashSet<Vertex> printCommunityPoint(ArrayList<ArrayList<Edge>> communities){
         HashSet<Vertex> pts=new HashSet<>();
         for(ArrayList<Edge> community:communities){
@@ -57,7 +58,7 @@ public class CommunitySearch {
                 pts.add(edge.to);
             }
         }
-        System.out.println(pts);
+        //System.out.println(++num);
         return pts;
     }
 }

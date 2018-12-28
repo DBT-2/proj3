@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Experiment {
-    public static String[] dataset={"/Users/tianyu/JavaProject/database_3/dataset/Amazon/amazon.top5000.cmty.txt",
-    "/Users/tianyu/JavaProject/database_3/dataset/DBLP/dblp.top5000.cmty.txt",
-    "/Users/tianyu/JavaProject/database_3/dataset/Youtube/youtube.top5000.cmty.txt",
+    public static String[] dataset={"/Users/tianyu/JavaProject/database_3/dataset/Amazon/amazon.pro.top5000.cmty.txt",
+    "/Users/tianyu/JavaProject/database_3/dataset/DBLP/dblp.pro.top5000.cmty.txt",
+    "/Users/tianyu/JavaProject/database_3/dataset/Youtube/youtube.pro.top5000.cmty.txt",
     };
     public static String[] index={"/Users/tianyu/JavaProject/database_3/dataset/Amazon/amazon.ungraph.index",
     "/Users/tianyu/JavaProject/database_3/dataset/DBLP/dblp.ungraph.index",
@@ -58,9 +58,9 @@ public class Experiment {
             int trainTotalNum=0;
             int testTotalNum=0;
             for(ArrayList<Integer> row:rows){
-                trainTotalNum+=row.size();
-                ArrayList<ArrayList<Edge>> commuties = communitySearch.run(k, graph.vertexs.get(row.get(0)), superGraph);
+                trainTotalNum+=row.size()-1;
                 long startTime=System.currentTimeMillis();
+                ArrayList<ArrayList<Edge>> commuties = communitySearch.run(k, graph.vertexs.get(row.get(0)), superGraph);
                 HashSet<Vertex> pts=CommunitySearch.printCommunityPoint(commuties);
                 long currentloop=System.currentTimeMillis()-startTime;
                 totalTime+=currentloop;
@@ -94,9 +94,9 @@ public class Experiment {
         return null;
     }
     public static void main(String[] args) throws IOException{
-        int k=18;
-        queryVertex(k);
-        //Experiment.returnPreRec(Experiment.dataset[2],k);
+        int k=6;
+        //queryVertex(k);
+        Experiment.returnPreRec(Experiment.dataset[2],k);
 
     }
 }
