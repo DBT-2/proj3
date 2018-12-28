@@ -57,14 +57,4 @@ public class DataSets {
         return dataGraph;
     }
 
-<<<<<<< HEAD:src/main/java/alg/DataCommunity.java
-    public static void main(String[] args) throws IOException{
-        Graph graph=DataCommunity.readData(DataCommunity.dataset[0]);
-        SuperGraph superGraph=IndexConstruction.run(graph);
-        CommunitySearch communitySearch=new CommunitySearch();
-        ArrayList<ArrayList<Edge>> commuties=communitySearch.run(3, graph.vertexs.get(213603),superGraph);
-        CommunitySearch.printCommunityPoint(commuties);
-    }
-=======
->>>>>>> 75381846903d640955d2fdc9d3da95fd564a0dca:src/main/java/alg/DataSets.java
 }
